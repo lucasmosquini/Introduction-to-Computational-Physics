@@ -1,0 +1,367 @@
+ %-----------PACOTES E DEFINIÇÕES--------------
+
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[a4paper, left=1.0cm, right=1.0cm, botton=3cm, top=2cm,headsep=3cm, footskip=3cm]{geometry}
+
+\usepackage{multicol}
+\setlength{\columnsep}{0.5cm}
+
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{cmap}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{float}
+\usepackage{nomencl}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{comment}
+\usepackage{setspace}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[brazil]{babel}
+\usepackage[pdftex]{hyperref}
+\usepackage[a]{esvect}
+\usepackage{url}
+\usepackage{gensymb}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{movie15}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx, animate}
+\usepackage{multimedia}
+\usepackage{xcolor}
+
+
+\begin{document}
+
+%--------LAYOUT DE CAPA----------
+
+\begin{titlepage}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.20]{USP-Brasão.jpg}
+    \label{brasaoUSP}
+\end{figure}
+
+\begin{center} 
+    {\large Universidade de São Paulo}\\[0.1cm] 
+    {\large Instituto de Física de São Carlos}\\[1.5cm]
+    {\large \textbf{7600017 - Introdução à Física Computacional}}\\[0.1cm]
+    {\large \textbf{Prof.  Guilherme Matos Sipahi}}\\[2.2cm]
+    {\Huge \textbf{Projeto 5}}\\ [2.0cm]
+    {\Huge \textbf{Dinâmica Populacional}} \\ [3.0cm]
+\end{center}
+
+\begin{center}{\large}
+    {\large Lucas Constante Mosquini - \textbf{NºUSP} 11858258}\\[0.1cm]
+\end{center}
+\hfill
+\begin{center}
+{\large \textbf{\today}}\\
+\end{center}
+
+\end{titlepage}
+
+%--------------SUMÁRIO--------------
+
+%\framebrox{\tableofcontents}
+%\newpage
+
+%--------TEXTO PRINCIPAL-----------
+
+\setlength{\columnseprule}{0.5pt}
+\def\columnseprulecolor{\color{\black}}
+
+\tableofcontents
+
+\newpage
+
+%----------------------------------------------------------------------
+
+\section{Introdução}
+
+%----------------------------------------------------------------------
+
+\subsection{Agradecimentos}
+
+Professor, gostaria de começar o relatório dizendo o quão interessante esse tema foi para mim. De começo achei que seria apenas um projeto bem trabalhoso e numérico, mas acabei me deparando com uma das coisas mais bonitas que vi na faculdade até então. Embora, realmente, tenha dado bastante trabalho também. Com isso, o meu muito obrigado ao senhor.
+
+\subsection{Sobre o modelo proposto}
+
+Acreditar que nos humanos poderíamos achar modelos matemáticos, inicialmente abstratos, para descrevermos e de certa forma predizer o que aconteceria na natureza, foi algo que, pessoalmente fiquei encantado. Embora a dinâmica newtoniana também tenha esse poder.
+
+Mas nesse caso proposto, vamos tratar de um modelo matemático, que embora seja simples, tem uma eficácia maravilhosa para descrevermos a dinâmica de crescimento de uma população.
+
+Inicialmente, podemos pontuar algumas grandezas que nos parecem mais importantes para uma possível descrição: a população inicial, uma possível taxa de variação da população no tempo, sendo ela positiva ou negativa e também, como estamos tratando de um caso biológico, a disponibilidade de alimentos assim como de predadores e outros demais fatores.
+
+\hfill
+
+Assim, como descrito no projeto chegamos ao modelo proposto:
+
+\begin{equation}
+    x_{i+1} = rx_{i}(1-x_{i})
+\end{equation}
+
+Onde $x_{i}$ representa a a população inicial e r a taxa de variação populacional temporal.
+
+
+%----------------------------------------------------------------------
+
+\section{Tarefa A: Tratamento Geral}
+
+\subsection{Mapa}
+
+Da equaçaõ acima, queremos encontrar os pontos que obedecem a seguinte igualdade:
+
+\begin{equation}
+    x^{*} = rx^{*}(1-x^{*})
+\end{equation}
+
+Obviamente $x^{*} = 0$ é solução da equação, mas também os pontos:
+
+\begin{equation}
+    x^{*} = \frac{r - 1}{r} = 1 - \frac{1}{r}
+\end{equation}
+
+Assim, como a população sempre tem que ser maior ou igual a zero, temos que $r > 1$
+
+Para uma verificação mais profunda, faremos um mapa de órbitas, um plot de G(x) por x, para diferentes valores de x:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{mapaorb.png}
+    \caption{Mapa de Orbitas}
+\end{figure}
+
+Onde x* são as raízes. Desta forma vemos que essas formam uma reta. Além disso vemos que r negativo é incoerente, assim como r > 4, uma vez que G(x) fica maior que 1
+
+\subsection{Dando condições iniciais}
+
+Do projeto, tomemos $x_{0} = 0.2$ para os seguintes valores de r: 1,2 e 3. Plotaremos a evolução temporal e algo que chamamos na teoria de diagrama de convergência, relacionado à evolução logística:
+
+\hfill
+
+Para r = 1
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=1.png}
+    \caption{r = 1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=1conv.png}
+    \caption{r = 1}
+\end{figure}
+
+Assim, com o valor de r=1 temos que a população seria extinta, ou seja, x* tende a 0.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=2.png}
+    \caption{r = 2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=2convpng.png}
+    \caption{r = 2}
+\end{figure}
+
+Para r = 2, temos a convergência de x* em 1/2
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=3.png}
+    \caption{r = 3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=3conv.png}
+    \caption{r = 3}
+\end{figure}
+
+Para r = 3, temos a convergência de x* em 2/3
+
+Com isso vemos que com r se aproximando de um certo valor > 3, a evolução adquire ondulações, onde como veremos mais a frente, virarão um verdadeiro caos.
+%----------------------------------------------------------------------
+
+\section{Tarefa B: Rumo ao Caos}
+
+\subsection{Pontos de atração}
+
+Define-se a função $G_{2}(x) = G(G(x))$ tal que $G_{2}(x) = x$. Assim podemos usar um r para plotarmos essa nova função, que nos revelará essas novas raízes:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{atrator2.png}
+    \caption{r = 3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{atrator1.png}
+    \caption{r = 3.5 - próximo a constante pedida}
+\end{figure}
+
+Na seção anterior que conforme aproximamos r do valor constante 3.5, começam a surgir oscilações na evolução temporal. Com os gráficos acima, vemos a quantidade de raízes de $G_{2}(x)$ relaciona-se também a esse caráter ondulatório. Sendo o ponto em verde o que chamamos de ponto fixo na literatura.
+
+\subsection{Duplicação do período}
+
+Como foi dito no projeto, para valores maiores que 3.545 começamos a verificar essas oscilações que precedem o caos.
+
+Tomemos por exemplos um valor de r pouco maior que a constante:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=3.56.png}
+    \caption{r = 3.56}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=3.56conv.png}
+    \caption{r = 3.56}
+\end{figure}
+
+Neste caso vemos que o mapa alterna entra 4 valores, por isso o nome de duplicação do período, analogamente as funções trigonométricas visto na figura 10. Contudo estamos chegando em um ponto que isso passará a ocorrer frequentemente, ou seja, para verificarmos os pontos fixos teríamos que montar recursivas composições de funções G(x), as quais evidentemente ficariam extremamentes complexas para pequenas variações de r.
+
+Assim, comumente usá-se uma característica dos valores de r que levam as chamadas bifurcações (multiplicações de períodos)
+
+\subsection{Constante De Feigenbaum}
+
+Por algum motivo estranho, a razão entre  a diferença desses r consecutivos é constante.
+
+\begin{equation}
+    \delta = \frac{r2 -r1 }{r3 - r2}
+\end{equation}
+
+Visto essa alternância no período das raízes do mapa, podemos plotá-las em função de r:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{bif.png}
+    \caption{Pontos de bifurcação em função de r}
+\end{figure}
+
+Podemos desenvolver esse mapa dos pontos de bifurcações.
+
+Aqui gostaria de lembrar ao senhor que desenvolvi um progaminha no geogebra que faz esse processo de mapeamento de maneira animada. Infelizmente, não consegui achar uma forma de colocar um video/gif aqui no arquivo do pdf, mas dei upload no geogebra:
+
+\hfill
+
+\color{red}{https://www.geogebra.org/m/wmnhebcy}
+
+\hfill
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.7]{mapbif.png}
+    \caption{Mapa das raízes em função de r}
+\end{figure}
+
+\color{black}
+
+Com isso, validamos o que vinhamos estudando até agora. r < 1 significa decrescimento, ou seja, redução da população, assim que passamos desse valor e até r = 3, temo um comportamento do tipo $1 - \frac{1}{r}$. Assim que chega-se em 3, temos o início das bifurcações e logo a multiplicação destas.
+
+Da análise do gráfico, podemos tirar os valores de r: 3, 3.44 , 3.54 , 3.56
+
+Usando então a equação (4), temos valores da constantes de aproximadamente : 4.59, 4.62
+
+Sabemos da literatura que a constante é aproximadamente 4.67, validando nossos dados.
+
+\section{Tarefa C: O Caos}
+
+Como dito no projeto, podemos calcular um ente matemático que nos mostrará como o caos se da quando nos aproximamos do valor limite de r estudado acima: o expoente de Lyapunov.
+
+\begin{equation}
+    \lambda = \frac{1}{n} \sum_{j = 0}^{n-1} ln(|G'(x_{j})|)
+\end{equation}
+
+Considerando um ponto inicial $x_{0}$ com uma pequena variação $\epsilon$ << 1, temos que para um r < 3, temos pontos fixos não dependentes de $x_{0}$, podemos calcular numericamente essa distância:
+
+\begin{equation}
+    d(i) = | G^{i}(x_{0}) - G^{i}(x_{0} + \epsilon)
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{dist.png}
+    \caption{$x_{0}$ = 0.1 , r = 1.5 e $\epsilon = 10^{-5}$}
+\end{figure}
+
+Vemos que como escolhemos um r < 3, não temos um quantidade significativa de caos, por isso temos a convergência a zero.
+
+\subsection{Caos}
+
+O nome expoente se deve ao fato de podemos interpretar esse ente como $e^{\lambda i}$.
+
+Tomando 2.5 < r < 3.6, podemos usar o código pedido e deixado na pasta, para calcularmos o valor de $\lambda$:
+
+r = 2.5:
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ $x_{0}$ & $\lambda_{dec}$ & $\lambda_{sum}$\\ \hline
+ 0.1 & -0.670503 & -0.63671 \\ \hline
+ 0.4 & -0.658644  & -0.693147 \\ \hline
+ 0.7 & -0.669762 & -0.71088 \\ 
+ \hline
+\end{tabular}
+\end{center}
+
+Onde os valores são negativos devido a falta de caos nessa região.
+
+\hfill
+
+Agora para um r = 3.8:
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ $x_{0}$ & $\lambda_{dec}$ & $\lambda_{sum}$\\ \hline
+ 0.1 & 0.43673 & 0.41628 \\ \hline
+ 0.4 & 0.4164093  & 0.48225 \\ \hline
+ 0.7 & 0.35078 & 0.339609\\ 
+ \hline
+\end{tabular}
+\end{center}
+
+Agora faremos a mesma análise do início, porem com r = 4, tentando explorar o limite caótico:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=4.png}
+    \caption{r = 4}
+\end{figure}
+
+Com valores positivos, pois já começamos a notar caos nessa região.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{r=4conv.png}
+    \caption{r = 4}
+\end{figure}
+
+Com os gráficos acima, podemos notar que para r = 4, o caos ja está completamente instaurado, onde nem podemos mais saber o período na figura 15.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{fim.png}
+    \caption{Caso genérico}
+\end{figure}
+
+\section{Fim}
+
+Com isso podemos finalizar o projeto, entendendo a relação do nosso parâmetro r com a instauração do caos.
+
+Embora nossa proposta de modelo matemático pareceu simples, se mostrou capaz de maravilhosas descrições da natureza, embora sabemos que no mundo real existe uma quantidade incomputáveis que afetam uma população. Em consonância, também vimos que pequenas mudanças nas condições iniciais levam resultados finais completamente diferentes, outro fato que torna mais difícil uma simulação perfeita da natureza.
+
+\end{document}

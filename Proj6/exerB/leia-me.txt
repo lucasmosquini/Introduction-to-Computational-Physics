@@ -1,0 +1,10 @@
+Professor, busquei seguir o modelo do primeiro exercício nos nomes.
+
+Na pasta estão:
+
+o pdf com as simulaçoes
+o arquivo com os dados da trajB
+e o exerB.f90 que foi o progama que reuni os dados, e fiz as simulaçoes.
+
+A simulação para o fator de escala 1000, ficou um pouco estranha,
+mas basicamente reflete que o planeta saiu de órbita, do estado ligado.
